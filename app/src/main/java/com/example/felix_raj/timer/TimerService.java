@@ -7,8 +7,6 @@ import android.os.CountDownTimer;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class TimerService extends Service {

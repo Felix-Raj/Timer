@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void restoreTimerStatus(){
-        TIMER_STATUS = getSharedPreferences("felix-raj-timer", MODE_PRIVATE).getString("TIMER_STATE", TimerService.IDLE);
+        TIMER_STATUS = getSharedPreferences("felix-raj-timer", MODE_PRIVATE).getString("TIMER_STATE", TIMER_STATUS);
     }
 
     void startTimer(){

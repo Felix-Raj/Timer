@@ -35,7 +35,6 @@ public class TimerService extends Service {
             @Override
             public void onTick(long millisUntilFinished) {
                 Log.d(TAG, "onTick: TICK");
-                //sendBroadcast(new Intent(TimerService.this, MainActivity.class).putExtra("current", String.valueOf(millisUntilFinished)));
                 publishResult(millisUntilFinished);
             }
 

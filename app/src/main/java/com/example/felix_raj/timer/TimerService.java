@@ -8,13 +8,13 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class TimerService extends Service {
     private static final String TAG = "TimerService";
-    static final String IDLE = "IDLE";
-    static final String STARTED = "STARTED";
-    static final String FINISHED = IDLE;
+    static final String FINISHED = "FINISHED";
+    static int runningFlag = 0;
 
     @Nullable
     @Override
@@ -31,18 +31,21 @@ public class TimerService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "onStartCommand: ");
-        new CountDownTimer(30000, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                Log.d(TAG, "onTick: TICK");
-                publishResult(millisUntilFinished);
-            }
+        if(runningFlag==0) {
+            new CountDownTimer(30000, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    Log.d(TAG, "onTick: TICK");
+                    publishResult(millisUntilFinished);
+                }
 
-            @Override
-            public void onFinish() {
-                publishResult(0);
-            }
-        }.start();
+                @Override
+                public void onFinish() {
+                    publishResult(0);
+                }
+            }.start();
+            runningFlag = 1;
+        }
         return super.onStartCommand(intent, flags, startId);
     }
 
